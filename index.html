@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encryption &amp; Decryption Tool</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo-wrapper" aria-hidden="true">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3.5" y="11" width="17" height="10.5" rx="2.5"></rect>
+          <path d="M7.5 11V7.5a4.5 4.5 0 0 1 9 0V11"></path>
+          <circle cx="12" cy="16.2" r="1.3" fill="currentColor" stroke="none"></circle>
+        </svg>
+      </div>
+      <h1 class="app-title">Encryption &amp; Decryption Tool</h1>
+    </header>
+
+    <main class="crypto-card">
+      <div class="control-group">
+        <label for="algorithm-select" class="input-label">Select Algorithm</label>
+        <select id="algorithm-select" class="form-control">
+          <option value="aes_cbc">AES-CBC</option>
+          <option value="aes_ctr">AES-CTR</option>
+          <option value="aes_gcm" selected>AES-GCM</option>
+          <option value="autokey">Autokey Cipher</option>
+          <option value="chacha20">ChaCha20-Poly1305</option>
+          <option value="columnar">Columnar Transposition Cipher</option>
+          <option value="fernet">Fernet Encryption</option>
+          <option value="playfair">Playfair Cipher</option>
+          <option value="vigenere">Vigenère Cipher</option>
+        </select>
+        <p id="algorithm-hint" class="field-hint"></p>
+      </div>
+
+      <div class="control-group" id="key-group">
+        <label for="key-input" class="input-label">Key</label>
+        <div class="key-input-wrapper">
+          <input type="password" id="key-input" class="form-control"
+                 placeholder="Enter key or password..."
+                 autocomplete="new-password" autocapitalize="off" spellcheck="false">
+          <button type="button" id="toggle-key-btn" class="icon-button"
+                  title="Show key" aria-label="Show key" aria-pressed="false">
+            <svg id="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <svg id="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+              <line x1="1" y1="1" x2="23" y2="23"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="label-row">
+          <label for="text-input" class="input-label">Input Text</label>
+          <button type="button" id="clear-input-btn" class="text-link-btn">Clear</button>
+        </div>
+        <textarea id="text-input" class="form-control textarea-control" rows="5"
+                  placeholder="Enter your texts here..." spellcheck="false" autocomplete="off"></textarea>
+      </div>
+
+      <div class="actions-row">
+        <button type="button" id="encrypt-btn" class="btn btn-encrypt">Encrypt</button>
+        <button type="button" id="decrypt-btn" class="btn btn-decrypt">Decrypt</button>
+      </div>
+
+      <div id="status-message" class="status-message hidden" role="status" aria-live="polite"></div>
+
+      <div class="control-group output-group">
+        <div class="label-row">
+          <label for="text-output" class="input-label">Output Result</label>
+          <div class="output-actions">
+            <button type="button" id="copy-btn" class="btn-sm btn-secondary">Copy</button>
+            <button type="button" id="download-btn" class="btn-sm btn-secondary">Download</button>
+            <button type="button" id="clear-output-btn" class="text-link-btn">Clear</button>
+          </div>
+        </div>
+        <textarea id="text-output" class="form-control textarea-control" rows="5" readonly
+                  placeholder="Result will appear here..." spellcheck="false"></textarea>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
